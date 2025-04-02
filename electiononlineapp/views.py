@@ -110,7 +110,13 @@ def submit_vote(request):
         # Fetch the position title based on position_id
         position = Position.objects.get(id=position_id)
         
-    return redirect('home')
+    return redirect('home')        
 def vote(request, position_id):
         candidates = Candidate.objects.filter(position_id=position_id)
-        return render(request, 'vote.html', {'candidates': candidates})
+        return render(request, 'vote.html', {'candidates': candidates})     
+
+
+
+
+
+       
