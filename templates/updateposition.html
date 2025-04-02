@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}
+Update Position{% endblock%}
+{% block updateposition%}
+<!-- Update Voting candidate entries -->
+
+  <div class="container mt-5">
+    <div class="text-center mb-4">
+        <h1 class="fw-bold">Positions and Candidates</h1>
+        <p class="text-muted">Update election positions and their respective candidates.</p>
+    </div>
+
+    <!-- Form Card -->
+    <div class="row justify-content-center">
+        <div class="col-md-6" style="width:37%">
+            <div class="card shadow-lg border-0 rounded-4" style="width: 100%; max-width: 461px;">
+                <div class="card-body">
+                    <h4 class="card-title text-center mb-3">Update a Position</h4>
+                    <form method="post" action="#">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="position_name" class="form-label fw-bold">Position Name:</label>
+                            <input type="text" class="form-control" id="position_name" value="{{ position.name }}" name="position_name" placeholder="e.g. President">
+                        </div>
+                        <div class="mb-3">
+                            <label for="candidate_names" class="form-label fw-bold">Candidate Names (comma-separated):</label>
+                            <input type="text" class="form-control" id="candidate_names" name="candidate_names" value="{% for candidate in position.candidates.all %}{{ candidate.name }}{% if not forloop.last %}, {% endif %}{% endfor %}" placeholder="e.g. John Doe, Jane Smith">
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary px-4 py-2">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+
+
+  {%endblock%}

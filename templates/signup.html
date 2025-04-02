@@ -1,0 +1,110 @@
+{% extends "base.html" %}
+
+{% block register %}
+<!-- Register Page -->
+<div class="container mt-5 mb-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow-lg border-0 rounded-4" style="width: 100%; max-width: 600px;">
+                <div class="card-body p-4">
+                    <h2 class="text-center text-primary fw-bold mb-4">Register Here</h2>
+                    <form method="POST">
+                        {% csrf_token %}
+
+                        <div class="mb-3">
+                            <label for="name" class="form-label fw-bold">Username</label>
+                            <input id="name" type="text" class="form-control" name="username" placeholder="Enter Full Name" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label fw-bold">Email Address</label>
+                            <input id="email" type="email" class="form-control" name="email" placeholder="Enter your Email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="pass" class="form-label fw-bold">Password</label>
+                            <div class="input-group">
+                                <input id="pass" type="password" class="form-control" name="password" placeholder="Enter Password" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('pass')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <small class="form-text text-muted">Must be 8-20 characters, contain a digit & special character.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="pass2" class="form-label fw-bold">Confirm Password</label>
+                            <div class="input-group">
+                                <input id="pass2" type="password" class="form-control" name="password2" placeholder="Confirm Password" required>
+                                <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('pass2')">
+                                    <i class="fa-solid fa-eye"></i>
+                                </button>
+                            </div>
+                            <small class="form-text text-muted">Enter the same password again.</small>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="phone" class="form-label fw-bold">Phone Number</label>
+                            <input id="phone" type="tel" class="form-control" name="phoneno" placeholder="Enter Phone Number" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="vote_ID" class="form-label fw-bold">Voter Type</label>
+                            <select class="form-select" name="regtype">
+                                <option value="student">Student</option>
+                            </select>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary px-4 py-2">Sign Up</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Password Toggle Script -->
+<script>
+    function togglePassword(id) {
+        let field = document.getElementById(id);
+        if (field.type === "password") {
+            field.type = "text";
+        } else {
+            field.type = "password";
+        }
+    }
+</script>
+
+<!-- Additional Styles -->
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        border-radius: 12px;
+        padding: 20px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+        transition: 0.3s;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .input-group .btn {
+        border-left: none;
+    }
+
+    .input-group input {
+        border-right: none;
+    }
+</style>
+
+{% endblock %}
