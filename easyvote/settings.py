@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-@!w3q1da)_fk7%pd^cgxoa(min=$rnd4oz5dm#ul&m$dgql#(d
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-CSRF_TRUSTED_ORIGINS = ['http://studentelectionenv.eba-phmamu9k.eu-west-1.elasticbeanstalk.com']
-CSRF_COOKIE_DOMAIN = 'studentelectionenv.eba-phmamu9k.eu-west-1.elasticbeanstalk.com'
+
+
 CSRF_COOKIE_SECURE = True
 
 
@@ -120,15 +120,13 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"      
+STATIC_URL = "static/"
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 #STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATIC_ROOT = "staticfiles/"  
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')     
- 
+STATIC_ROOT = "staticfiles/"
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-
