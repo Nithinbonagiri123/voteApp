@@ -5,14 +5,12 @@ from django.contrib.auth.models import User
 from .models import UserProfile,Position,Candidate
 from django.shortcuts import get_object_or_404
 from django.db.models import F
-from announcementlib.electionannounce import rotate_announcements
-import boto3
 from django.views.decorators.csrf import csrf_exempt
 
 
 def home(request):
      positions = Position.objects.all()
-     announcement = rotate_announcements()
+     announcement = "Don't forget to cast your vote in the student election!"
      context = {'positions': positions, 'announcement': announcement}
      return render (request, 'home.html',context)
 @csrf_exempt
@@ -112,19 +110,6 @@ def submit_vote(request):
         # Fetch the position title based on position_id
         position = Position.objects.get(id=position_id)
         
-        """ #Send SNS notification
-        topicOfArn = 'arn:aws:sns:eu-west-1:250738637992:vote_App_CPP'
-        subjectToSend = 'Vote Submitted'
-        messageToSend = f'A vote has been submitted for a position'
-        AWS_REGION = 'eu-west-1'
-        sns_client = boto3.client('sns', region_name=AWS_REGION)
-        response = sns_client.publish(
-            TopicArn=topicOfArn,
-            Message=messageToSend,
-            Subject=subjectToSend,
-        )
-        print(response) """  # Print SNS response 
-
     return redirect('home')
 def vote(request, position_id):
         candidates = Candidate.objects.filter(position_id=position_id)
